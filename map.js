@@ -7,8 +7,10 @@ require([
 		  "esri/Graphic",
 		  "esri/widgets/BasemapToggle",
 		  "esri/widgets/BasemapGallery",
-		  "esri/layers/GraphicsLayer"
-
+		  "esri/layers/GraphicsLayer",
+		  "esri/layers/FeatureLayer",
+          "esri/layers/TileLayer",
+		  "esri/widgets/LayerList"
 		], function(
 			esriConfig,
 			Map,
@@ -18,7 +20,10 @@ require([
 			Graphic,
 			BasemapToggle,
 			BasemapGallery,
-			GraphicsLayer
+			GraphicsLayer,
+			FeatureLayer,
+			TileLayer,
+			LayerList
 		) {
 	esriConfig.apiKey = "AAPK5067984744a84d2384da027ddfa80ce8RZonR4G8lDlC88I5gs7vJBrdh-u6flR0MqOQHsgL3rzjjr7dtVU4638ZtVDz9DA1";
 	const map = new Map ({
@@ -152,5 +157,21 @@ require([
 
 	});
 	graphicsLayer.add(polygonGraphic);
+	const trailheadsLayer = new FeatureLayer({
+	    url: "https://services3.arcgis.com/GVgbJbqm8hXASVYi/arcgis/rest/services/Trailheads_Styled/FeatureServer/0"
+	});
+	 map.add(trailheadsLayer);
+	 
+	const trailheadsLayer2 = new TileLayer({
+	     url: "https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer"
+	});
+	map.add(trailheadsLayer2);
 	
+	 var layerList = new LayerList({
+	   view: view
+	 });
+	 // Adds widget below other elements in the top left corner of the view
+	 view.ui.add(layerList, {
+	   position: "top-left"
+	 });
 });
