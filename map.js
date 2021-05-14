@@ -172,6 +172,6 @@ require([
 	 });
 	 // Adds widget below other elements in the top left corner of the view
 	 view.ui.add(layerList, {
-	   position: "top-left"
+	   position: "bottom-left"
 	 });
 });
