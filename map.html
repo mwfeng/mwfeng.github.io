@@ -1,15 +1,48 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <link rel="stylesheet" href="map.css" />
+    <link rel="stylesheet" href="css/map.css" />
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
     <title>Display a map</title>
     <link rel="stylesheet" href="https://js.arcgis.com/4.19/esri/themes/light/main.css">
     <script src="https://js.arcgis.com/4.19/"></script>
-    <script src="map.js"></script>
+    <script src="js/map1.js"></script>
+
 </head>
+
 <body>
-<div id="viewDiv"></div>
+
+    <div id="viewDiv"></div>
+    <div id="viewDiv2"></div>
+    <div id="popdiv_">
+
+        <div id="bmap1" class="basemap"><img src="img/street_night.png" /></div>
+        <div id="bmap2" class="basemap"><img src="img/streets.png" /></div>
+        <div id="bmap3" class="basemap"><img src="img/osm_standard.png" /></div>
+        <div id="bmap4" class="basemap"><img src="img/arcgis-nova.png"></div>
+
+    </div>
+    <div id="feature">
+        <button id="button1">delete</button>
+        <input type="checkbox" id="Earthquakes"><br>
+        <div id="earthquake2"><a>Earthquakes</a></div>
+        <button id = "button2">delete</button>
+        <input type="checkbox" id="city"><br>
+        <div id="city2">SampleWorldCities</div>
+        <button id = "button3">delete</button>
+        <input type="checkbox" id="imagery"><br>
+        <div id="imagery2">Imagery</div>
+        <button id = "button4">delete</button>
+        <input type="checkbox" id="china_B"><br>
+        <div id="china_B2">CHN_Boundaries</div>
+        <div id ="num"></div>
+
+    </div>
+    <div id = "scale"></div>
+    <div id = "pointroom"></div>
+    <div id = "div1"></div>
 </body>
+
 </html>
