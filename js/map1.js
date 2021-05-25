@@ -29,7 +29,7 @@ require([
 	})
 	const view = new MapView({
 		map: map,
-		center: [-110, 34.207],
+		center: [110, 34.207],
 		zoom: 3,
 		container: "viewDiv"
 
@@ -41,7 +41,7 @@ require([
 
 	const view2 = new MapView({
 		map: map2,
-		center: [-110, 34.207],
+		center: [110, 34.207],
 		zoom: 3,
 		container: "viewDiv2"
 
@@ -170,7 +170,11 @@ require([
 	});
 	const Layer5 = new FeatureLayer({
 		title: "CHN_Boundaries",
-		url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/CHN_Boundaries_2020/FeatureServer/3"
+		url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/CHN_Boundaries_2020/FeatureServer/3",
+		popupTemplate: {
+			title: "{NAME}",
+			content: "population:{TOTPOP_CY}<br/>ID: {ID}"			
+		  }
 	});
 	//图层显示、隐藏与数量—————————————————————————————————————————————————————————————————————————————————————————
 	var num = document.getElementById("num");
@@ -253,6 +257,7 @@ require([
 	checkbox4.onclick = (function () {
 		if (checkbox4.checked) {
 			map.add(Layer5);
+			// var p = Layer5.createPopupTemplate();
 		}
 		else {
 			view.map.remove(Layer5);
@@ -301,40 +306,38 @@ require([
 		scalee.innerHTML = "比例尺：" + "1:" + scale;
 	});
 
-	var queryURL = "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/CHN_Boundaries_2020/FeatureServer/3/?token=TOKmSIRV_iknR6yjQ-wg8dxkvetluLZk2Rk3fMpSSsACqohq_JFDZXdHoPML5-eNFteN-97fg7BjLpATlLtIbq1QgP6NH9h3QVwfXN5VcvHZmA_tonTCsThLo8DipRKzmCfDNFCaDT6x-OmeB4GbUZX5-jjkj7teotnB0p3Q3XqEK0TV6TP8AP2AYAY_017HTTS7M8IhtqzEyhy7la3oxJ_RPX-T-ZybB3hvPF2RsEMNCASGC8GQ00dlE8pzYlWHO4jajhiuTU2py4O54qRxVld98tpGpCjevDZF3qX_0ZxHNOApDfOb3Aeqxl5Q8zXQ"
-	var qt = new QueryTask({
-		url:queryURL
-	});
-	var q = new Query();
-	q.returnGeometry = true;
-	q.outFields=["*"];
-
-	q.where =  "NAME = 'Wuchang District'" ;
-	view.on("click",function (evt) {
-		qt.execute(q).then(function (result) {
-			console.log(result)
-			var g_wuchang = result.features[0];
-
-			g_wuchang.symbol={
-				type: "simple-fill",  // autocasts as new SimpleFillSymbol()
-				color: [ 51,51, 204, 0.1 ],
-				style: "solid",
-				outline: {  // autocasts as new SimpleLineSymbol()
-					color: "white",
-					width: 1
-				}
-			};
-			g_wuchang.popupTemplate = {
-				title: "{Name}",
-				content: "{Description}"
-			}
-			g_wuchang.attributes = {
-				Name: "Graphic",
-				Description: "Name"
-			}
-			view.graphics.add(g_wuchang);
-		})
-	})
+	// var queryURL = "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/CHN_Boundaries_2020/FeatureServer/3/?token=TOKmSIRV_iknR6yjQ-wg8dxkvetluLZk2Rk3fMpSSsACqohq_JFDZXdHoPML5-eNFteN-97fg7BjLpATlLtIbq1QgP6NH9h3QVwfXN5VcvHZmA_tonTCsThLo8DipRKzmCfDNFCaDT6x-OmeB4GbUZX5-jjkj7teotnB0p3Q3XqEK0TV6TP8AP2AYAY_017HTTS7M8IhtqzEyhy7la3oxJ_RPX-T-ZybB3hvPF2RsEMNCASGC8GQ00dlE8pzYlWHO4jajhiuTU2py4O54qRxVld98tpGpCjevDZF3qX_0ZxHNOApDfOb3Aeqxl5Q8zXQ"
+	// var qt = new QueryTask({
+	// 	url: queryURL
+	// });
+	// var q = new Query();
+	// q.returnGeometry = true;
+	// q.outFields = ["*"];
+	// q.where = "NAME = 'Wuchang District'";
+	// view.on("click", function (evt) {
+	// 	qt.execute(q).then(function (result) {
+	// 		console.log(result)
+	// 		var g_wuchang = result.features[0];
+	// 		g_wuchang.symbol = {
+	// 			type: "simple-fill",  // autocasts as new SimpleFillSymbol()
+	// 			color: [51, 51, 204, 0.1],
+	// 			style: "solid",
+	// 			outline: {  // autocasts as new SimpleLineSymbol()
+	// 				color: "white",
+	// 				width: 1
+	// 			}
+	// 		};
+	// 		g_wuchang.popupTemplate = {
+	// 			title: "{Name}",
+	// 			content: "{Description}"
+	// 		}
+	// 		g_wuchang.attributes = {
+	// 			Name: "Graphic",
+	// 			Description: "Name"
+	// 		}
+	// 		view.graphics.add(g_wuchang);
+	// 	})
+	// })
 
 	document.getElementById("div1").addEventListener("click", function () {
 		// map.add(Layer2);
