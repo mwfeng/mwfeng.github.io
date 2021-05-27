@@ -34,52 +34,62 @@ require([
 		container: "viewDiv"
 
 	});
-
 	const map2 = new Map({
 		basemap: "arcgis-imagery"
 	})
-
 	const view2 = new MapView({
 		map: map2,
 		center: [110, 34.207],
 		zoom: 3,
 		container: "viewDiv2"
-
 	});
 
-	view.on(["pointer-down", "pointer-move", "mouse-wheel"], function (evt) {
-		Lview2();
-	});
-	function Lview2() {
+	//联动
+	// view.on(["click"],function (evt) {
+	// 	map.basemap = map2.basemap		
+	// })
+	view.on(["pointer-down","pointer-move", "mouse-wheel"], function (evt) {		
+		var viewdiv = document.getElementById("viewDiv");
+		var width = viewdiv.offsetWidth;
+		var left = view.toMap({x:0,y:0});
+        var right = view.toMap({x:width,y:0});
+		var g = right.longitude -left.longitude; 
 		view2.scale = view.scale;
-		view2.center = view.center;
-	};
-
-	view2.on(["pointer-down", "pointer-move", "mouse-wheel"], function (evt) {
-		Lview();
+		lon2 = view.center.longitude + g;
+		lat2 = view.center.latitude;
+        center2 =[lon2,lat2];
+		view2.center = center2;
 	});
-	function Lview() {
-
+	view2.on(["pointer-down", "pointer-move", "mouse-wheel"], function (evt) {
 		view.center = view2.center;
 		view.scale = view2.scale;
-	};
+	});
+
+	//底图切换
 	document.getElementById("bmap1").addEventListener("click", function () {
 		map.basemap = "arcgis-streets-night";
 	});
-
-
 	document.getElementById("bmap2").addEventListener("click", function () {
 		map.basemap = "streets";
 	});
-
 	document.getElementById("bmap3").addEventListener("click", function () {
 		map.basemap = "osm-standard";
 	});
-
 	document.getElementById("bmap4").addEventListener("click", function () {
 		map.basemap = "arcgis-nova";
 	});
-
+	document.getElementById("bmap11").addEventListener("click", function () {
+		map2.basemap = "arcgis-streets-night";
+	});
+	document.getElementById("bmap22").addEventListener("click", function () {
+		map2.basemap = "streets";
+	});
+	document.getElementById("bmap33").addEventListener("click", function () {
+		map2.basemap = "osm-standard";
+	});
+	document.getElementById("bmap44").addEventListener("click", function () {
+		map2.basemap = "arcgis-imagery";
+	});
 	const locate = new Locate({
 		view: view,
 		useHeadingEnabled: false,
@@ -111,10 +121,8 @@ require([
 		title: "Polygon",
 	});
 	map.add(graphicsLayer);
-
 	// Create a polygon geometry
 	const polygon = {
-
 		type: "polygon",
 		rings: [
 			[-118.818984489994, 34.0137559967283], //Longitude, latitude
@@ -148,22 +156,19 @@ require([
 
 	});
 	graphicsLayer.add(polygonGraphic);
-
+	//专题图显示、隐藏与删除
 	const Layer1 = new FeatureLayer({
 		title: "Military",
 		url: "https://sampleserver6.arcgisonline.com/arcgis/rest/services/Military/FeatureServer"
 	});
-
 	const Layer2 = new TileLayer({
 		title: "World_Imagery",
 		url: "https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer"
 	});
-
 	const Layer3 = new FeatureLayer({
 		title: "Earthquakes_Since1970",
 		url: "https://sampleserver6.arcgisonline.com/arcgis/rest/services/Earthquakes_Since1970/MapServer"
 	});
-
 	const Layer4 = new FeatureLayer({
 		title: "SampleWorldCities",
 		url: "https://sampleserver6.arcgisonline.com/arcgis/rest/services/SampleWorldCities/MapServer"
@@ -176,7 +181,7 @@ require([
 			content: "population:{TOTPOP_CY}<br/>ID: {ID}"			
 		  }
 	});
-	//图层显示、隐藏与数量—————————————————————————————————————————————————————————————————————————————————————————
+	//图层显示、隐藏与删除———————————————————————————————————————————————————————————————————————————————————————
 	var num = document.getElementById("num");
 	var num1 = document.createElement("div");
 	num.appendChild(num1);
@@ -276,27 +281,24 @@ require([
 			null;
 		}
 	});
-	//获取鼠标的xy值
-	var farther = document.getElementById("scale");
+	//经纬度值
+	var farther = document.getElementById("JWD");
 	var coord = document.createElement("div");
 	farther.appendChild(coord);
-
-	function show(pt) {
-		var coords = "经纬度：" + pt.latitude.toFixed(2) + "," + pt.longitude.toFixed(2);
+	function JWD(pt) {
+		var coords = "经纬度：" + pt.longitude.toFixed(2) + "," + pt.latitude.toFixed(2);
 		coord.innerHTML = coords;
 	}
-
 	view.on(["pointer-down", "pointer-move"], function (evt) {
-		show(view.toMap({ x: evt.x, y: evt.y }));
+		JWD(view.toMap({ x: evt.x, y: evt.y }));
 	});
 	view2.on(["pointer-down", "pointer-move"], function (evt) {
-		show(view.toMap({ x: evt.x, y: evt.y }));
+		JWD(view.toMap({ x: evt.x, y: evt.y }));
 	});
-
-	var pointroom = document.getElementById("pointroom");
+	//比例尺
+	var scale = document.getElementById("scale");
 	var scalee = document.createElement("div");
-	pointroom.appendChild(scalee);
-
+	scale.appendChild(scalee);
 	view.on(["pointer-down", "mouse-wheel", "pointer-move"], function (evt) {
 		var scale = view.scale.toFixed(0);
 		scalee.innerHTML = "比例尺：" + "1:" + scale;
@@ -339,7 +341,7 @@ require([
 	// 	})
 	// })
 
-	document.getElementById("div1").addEventListener("click", function () {
+	// document.getElementById("div1").addEventListener("click", function () {
 		// map.add(Layer2);
 		// var divone = document.getElementById("div1");
 		// var xmin = divone.offsetLeft;
@@ -353,43 +355,42 @@ require([
 		// var wxmax = wxmin + viewdiv.offsetWidth;
 		// var wymax = wymin + viewdiv.offsetHeight;
 		// console.log(String(wxmax));
-	});
-
+	// });
 	//浮动DIV————————————————————————————————————————————————————————————————————————————————
-	window.onload = function () {
-		var disX = disY = 0;                         // 鼠标距离div的左距离和上距离
-		var div1 = document.getElementById("div1");  // 得到div1对象
+	// window.onload = function () {
+	// 	var disX = disY = 0;                         // 鼠标距离div的左距离和上距离
+	// 	var div1 = document.getElementById("div1");  // 得到div1对象
 
-		// 鼠标按下div1时
-		div1.onmousedown = function (e) {
-			var evnt = e || event;                   // 得到鼠标事件
-			disX = evnt.clientX - div1.offsetLeft;   // 鼠标横坐标 - div1的left
-			disY = evnt.clientY - div1.offsetTop;    // 鼠标纵坐标 - div1的top
+	// 	// 鼠标按下div1时
+	// 	div1.onmousedown = function (e) {
+	// 		var evnt = e || event;                   // 得到鼠标事件
+	// 		disX = evnt.clientX - div1.offsetLeft;   // 鼠标横坐标 - div1的left
+	// 		disY = evnt.clientY - div1.offsetTop;    // 鼠标纵坐标 - div1的top
 
-			// 鼠标移动时
-			document.onmousemove = function (e) {
-				var evnt = e || event;
-				var x = evnt.clientX - disX;
-				var y = evnt.clientY - disY;
-				var window_width = document.documentElement.clientWidth - div1.offsetWidth;
-				var window_height = document.documentElement.clientHeight - div1.offsetHeight;
+	// 		// 鼠标移动时
+	// 		document.onmousemove = function (e) {
+	// 			var evnt = e || event;
+	// 			var x = evnt.clientX - disX;
+	// 			var y = evnt.clientY - disY;
+	// 			var window_width = document.documentElement.clientWidth - div1.offsetWidth;
+	// 			var window_height = document.documentElement.clientHeight - div1.offsetHeight;
 
-				x = (x < 0) ? 0 : x;                          // 当div1到窗口最左边时
-				x = (x > window_width * 0.41 - 100) ? window_width * 0.41 : x;    // 当div1到窗口最右边时
-				y = (y < 0) ? 0 : y;                          // 当div1到窗口最上边时
-				y = (y > window_height) ? window_height : y;  // 当div1到窗口最下边时
+	// 			x = (x < 0) ? 0 : x;                          // 当div1到窗口最左边时
+	// 			x = (x > window_width * 0.41 - 100) ? window_width * 0.41 : x;    // 当div1到窗口最右边时
+	// 			y = (y < 0) ? 0 : y;                          // 当div1到窗口最上边时
+	// 			y = (y > window_height) ? window_height : y;  // 当div1到窗口最下边时
 
-				div1.style.left = x + "px";
-				div1.style.top = y + "px";
-			};
+	// 			div1.style.left = x + "px";
+	// 			div1.style.top = y + "px";
+	// 		};
 
-			// 鼠标抬起时
-			document.onmouseup = function () {
-				document.onmousemove = null;
-				document.onmouup = null;
-			};
+	// 		// 鼠标抬起时
+	// 		document.onmouseup = function () {
+	// 			document.onmousemove = null;
+	// 			document.onmouup = null;
+	// 		};
 
-			return false;
-		};
-	};
+	// 		return false;
+	// 	};
+	// };
 });

@@ -3,26 +3,31 @@
 
 <head>
     <link rel="stylesheet" href="css/map.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
     <title>Display a map</title>
     <link rel="stylesheet" href="https://js.arcgis.com/4.19/esri/themes/light/main.css">
     <script src="https://js.arcgis.com/4.19/"></script>
     <script src="js/map1.js"></script>
-
 </head>
 
 <body>
 
     <div id="viewDiv"></div>
     <div id="viewDiv2"></div>
-    <div id="popdiv_">
-
+    
+    <div id="Basemap_">
         <div id="bmap1" class="basemap"><img src="img/street_night.png" /></div>
         <div id="bmap2" class="basemap"><img src="img/streets.png" /></div>
         <div id="bmap3" class="basemap"><img src="img/osm_standard.png" /></div>
         <div id="bmap4" class="basemap"><img src="img/arcgis-nova.png"></div>
-
+    </div>
+    <div id="Basemap_2">
+        <div id="bmap11" class="basemap"><img src="img/street_night.png" /></div>
+        <div id="bmap22" class="basemap"><img src="img/streets.png" /></div>
+        <div id="bmap33" class="basemap"><img src="img/osm_standard.png" /></div>
+        <div id="bmap44" class="basemap"><img src="img/Imagery.png"></div>
     </div>
     <div id="feature">
         <button id="button1">delete</button>
@@ -40,9 +45,9 @@
         <div id ="num"></div>
 
     </div>
+    <div id = "JWD"></div>
     <div id = "scale"></div>
-    <div id = "pointroom"></div>
-    <div id = "div1"></div>
+    <!-- <div id = "div1"></div> -->
 </body>
 
 </html>

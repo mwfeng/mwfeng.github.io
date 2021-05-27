@@ -1,72 +1,27 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html>
-
-<head>
-    <meta charset="utf8">
-    <title>js拖拽效果</title>
-    <style type="text/css">
-        #div1 {
-            width: 200px;
-            height: 200px;
-            position: absolute;
-            background: #99dd33;
-            cursor: move;
-        }
-    </style>
-</head>
-
-<body>
-    <div id="div1"></div>
-</body>
-<script type="text/javascript">
-    // js代码
-    window.onload = function () {
-        var disX = disY = 0;                         // 鼠标距离div的左距离和上距离
-        var div1 = document.getElementById("div1");  // 得到div1对象
-
-        // 鼠标按下div1时
-        div1.onmousedown = function (e) {
-            var evnt = e || event;                   // 得到鼠标事件
-            disX = evnt.clientX - div1.offsetLeft;   // 鼠标横坐标 - div1的left
-            disY = evnt.clientY - div1.offsetTop;    // 鼠标纵坐标 - div1的top
-
-            // 鼠标移动时
-            document.onmousemove = function (e) {
-                var evnt = e || event;
-                var x = evnt.clientX - disX;
-                var y = evnt.clientY - disY;
-                var window_width = document.documentElement.clientWidth - div1.offsetWidth;
-                var window_height = document.documentElement.clientHeight - div1.offsetHeight;
-
-                x = (x < 0) ? 0 : x;                          // 当div1到窗口最左边时
-                x = (x > window_width) ? window_width : x;    // 当div1到窗口最右边时
-                y = (y < 0) ? 0 : y;                          // 当div1到窗口最上边时
-                y = (y > window_height) ? window_height : y;  // 当div1到窗口最下边时
-
-                div1.style.left = x + "px";
-                div1.style.top = y + "px";
-            };
-
-            // 鼠标抬起时
-            document.onmouseup = function () {
-                document.onmousemove = null;
-                document.onmouup = null;
-            };
-
-            return false;
-        };
-    };
-    var n = 1;
-    function changen() {
-        $.ajax({
-            async: false,
-            success: function () {
-                n = 0;
-            }
-        })
-        return n;
-    };
-    alert(n);
+<head> 
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" /> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<title>Hello, World</title> 
+<style type="text/css"> 
+html{height:100%} 
+body{height:100%;margin:0px;padding:0px} 
+#con{height:100%} 
+</style> 
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=1.0&type=webgl&ak=86UnuwUUy7KU1rkCwmLhWXn0Ds2Z7So7">
 </script>
-
+</head> 
+<body> 
+<div id="con"></div>
+<script type="text/javascript" >
+var map = new BMapGL.Map("con");
+// 创建地图实例 
+var point = new BMapGL.Point(110, 34.207);
+// 创建点坐标 
+map.centerAndZoom(point, 3);
+// 初始化地图，设置中心点坐标和地图级别 
+map.enableScrollWheelZoom(true); 
+</script> 
+</body> 
 </html>
