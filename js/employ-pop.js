@@ -36,59 +36,7 @@ require([
 		zoom: 3,
 		container: "viewDiv"
 	});
-	
 
-	const map3 = new Map({
-		basemap: "arcgis-imagery"
-	})
-	const view3 = new MapView({
-		map: map3,
-		center: [110, 34.207],
-		zoom: 3,
-		container: "viewDiv3"
-	});
-	const map4 = new Map({
-		basemap: "arcgis-imagery"
-	})
-	const view4 = new MapView({
-		map: map4,
-		center: [110, 34.207],
-		zoom: 3,
-		container: "viewDiv4"
-	});
-	view.on(["pointer-down", "pointer-move", "mouse-wheel"], function (evt) {
-		var viewdiv = document.getElementById("viewDiv");
-		var width = viewdiv.offsetWidth;
-		var left = view.toMap({ x: 0, y: 0 });
-		var right = view.toMap({ x: width, y: 0 });
-		var g = right.longitude - left.longitude;
-		lon2 = view.center.longitude + g;
-		lat2 = view.center.latitude;
-		center2 = [lon2, lat2];
-		// view2.center = center2;
-	});
-	view4.on(["pointer-down", "pointer-move", "mouse-wheel"], function (evt) {
-		view.center = view4.center;
-		view.scale = view4.scale;
-		view3.center = view4.center;
-		view3.scale = view4.scale;
-		var viewdiv = document.getElementById("viewDiv");
-		var width = viewdiv.offsetWidth;
-		var left = view.toMap({ x: 0, y: 0 });
-		var right = view.toMap({ x: width, y: 0 });
-		var g = right.longitude - left.longitude;
-
-		lon2 = view.center.longitude + g;
-		lat2 = view.center.latitude;
-		center2 = [lon2, lat2];
-		// view2.center = center2;
-	});
-	
-	document.getElementById("div1").addEventListener("dblclick", function () {
-		var mm = map.basemap;
-		map.basemap = map3.basemap;
-		map3.basemap = mm;
-	});
 	//底图切换--------------------------------------------------------------------------------
 	document.getElementById("bmap1").addEventListener("click", function () {
 		map.basemap = "arcgis-streets-night";
@@ -128,10 +76,6 @@ require([
 		useHeadingEnabled: false
 	});
 	view.ui.add(track, "top-left");
-
-	
-
-
 
 	//专题图显示、隐藏与删除-------------------------------------------------------------------------------------------------
 	const Layer1 = new FeatureLayer({
@@ -267,9 +211,6 @@ require([
 	view.on(["pointer-down", "pointer-move"], function (evt) {
 		JWD(view.toMap({ x: evt.x, y: evt.y }));
 	});
-	view4.on(["pointer-down", "pointer-move"], function (evt) {
-		JWD(view.toMap({ x: evt.x, y: evt.y }));
-	});
 	//比例尺
 	var scale = document.getElementById("scale");
 	var scalee = document.createElement("div");
@@ -278,112 +219,5 @@ require([
 		var scale = view.scale.toFixed(0);
 		scalee.innerHTML = "比例尺：" + "1:" + scale;
 	});
-	view4.on(["pointer-down", "mouse-wheel", "pointer-move"], function (evt) {
-		var scale = view.scale.toFixed(0);
-		scalee.innerHTML = "比例尺：" + "1:" + scale;
-	});
-	view3.on("pointer-move", function(event){
-		var query = Layer5.createQuery();
-		query.geometry = view.toMap(event);  // the point location of the pointer
-		query.distance = 2;
-		query.units = "miles";
-		query.spatialRelationship = "intersects";  // this is the default
-		query.returnGeometry = true;
-		query.outFields = [ "POPULATION" ];
-	  
-		featureLayerView.queryFeatures(query)
-		  .then(function(response){
-			// returns a feature set with features containing the
-			// POPULATION attribute and each feature's geometry
-		  });
-	  });
-	// var queryURL = "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/CHN_Boundaries_2020/FeatureServer/3/?token=TOKmSIRV_iknR6yjQ-wg8dxkvetluLZk2Rk3fMpSSsACqohq_JFDZXdHoPML5-eNFteN-97fg7BjLpATlLtIbq1QgP6NH9h3QVwfXN5VcvHZmA_tonTCsThLo8DipRKzmCfDNFCaDT6x-OmeB4GbUZX5-jjkj7teotnB0p3Q3XqEK0TV6TP8AP2AYAY_017HTTS7M8IhtqzEyhy7la3oxJ_RPX-T-ZybB3hvPF2RsEMNCASGC8GQ00dlE8pzYlWHO4jajhiuTU2py4O54qRxVld98tpGpCjevDZF3qX_0ZxHNOApDfOb3Aeqxl5Q8zXQ"
-	// var qt = new QueryTask({
-	// 	url: queryURL
-	// });
-	// var q = new Query();
-	// q.returnGeometry = true;
-	// q.outFields = ["*"];
-	// q.where = "NAME = 'Wuchang District'";
-	// view.on("click", function (evt) {
-	// 	qt.execute(q).then(function (result) {
-	// 		console.log(result)
-	// 		var g_wuchang = result.features[0];
-	// 		g_wuchang.symbol = {
-	// 			type: "simple-fill",  // autocasts as new SimpleFillSymbol()
-	// 			color: [51, 51, 204, 0.1],
-	// 			style: "solid",
-	// 			outline: {  // autocasts as new SimpleLineSymbol()
-	// 				color: "white",
-	// 				width: 1
-	// 			}
-	// 		};
-	// 		g_wuchang.popupTemplate = {
-	// 			title: "{Name}",
-	// 			content: "{Description}"
-	// 		}
-	// 		g_wuchang.attributes = {
-	// 			Name: "Graphic",
-	// 			Description: "Name"
-	// 		}
-	// 		view.graphics.add(g_wuchang);
-	// 	})
-	// })
 
-
-	// 浮动DIV————————————————————————————————————————————————————————————————————————————————
-	window.onload = function () {
-		var disX = disY = 0;                         // 鼠标距离div的左距离和上距离
-		var div1 = document.getElementById("div1");  // 得到div1对象
-
-		// 鼠标按下div1时
-		div1.onmousedown = function (e) {
-			var evnt = e || event;                   // 得到鼠标事件
-			disX = evnt.clientX - div1.offsetLeft;   // 鼠标横坐标 - div1的left
-			disY = evnt.clientY - div1.offsetTop;    // 鼠标纵坐标 - div1的top
-
-			// 鼠标移动时
-			document.onmousemove = function (e) {
-				var evnt = e || event;
-				var x = evnt.clientX - disX;
-				var y = evnt.clientY - disY;
-				var window_width = document.documentElement.clientWidth - div1.offsetWidth;
-				var window_height = document.documentElement.clientHeight - div1.offsetHeight;
-
-				x = (x < 0) ? 0 : x;                          // 当div1到窗口最左边时
-				x = (x > window_width * 1 - 100) ? window_width * 1 : x;    // 当div1到窗口最右边时
-				y = (y < 0) ? 0 : y;                          // 当div1到窗口最上边时
-				y = (y > window_height) ? window_height : y;  // 当div1到窗口最下边时
-
-				div1.style.left = x + "px";
-				div1.style.top = y + "px";
-			};
-
-			// 鼠标抬起时
-			document.onmouseup = function () {
-				document.onmousemove = null;
-				document.onmouup = null;
-			};
-
-			return false;
-		};
-	};
-	
 })
-function window2() 
-{
-	var divone = document.getElementById("div1");//移动框
-	var left = divone.offsetLeft;
-	var top = divone.offsetTop;
-	var width1 = divone.offsetWidth;
-	var height1 = divone.offsetHeight;
-	var right = left + width1;
-	var bottom = top + height1;
-	// console.log(top);	
-	// console.log(right);
-	// console.log(bottom);
-	// console.log(left);
-	document.getElementById("viewDiv3").style.clip = "rect(" + top +"px," + right +"px,"+ bottom + "px,"+ left + "px)";
-
-}
-

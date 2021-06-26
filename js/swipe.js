@@ -1,33 +1,50 @@
 require([
-    "esri/config",
-    "esri/Map",
-    "esri/views/MapView",
+	"esri/config",
+	"esri/Map",
+	"esri/views/MapView",
+	"esri/Graphic",
+	"esri/layers/FeatureLayer",
+	"esri/layers/TileLayer",
+	"esri/tasks/QueryTask",
+	"esri/tasks/support/Query",
+	"esri/portal/PortalItem",
+	"esri/layers/MapImageLayer",
+	"esri/layers/CSVLayer",
+	"esri/layers/Layer"
 ], function (
-    esriConfig,
-    Map,
-    MapView,
-
+	esriConfig,
+	Map,
+	MapView,
+	Graphic,
+	FeatureLayer,
+	TileLayer,
+	QueryTask,
+	Query,
+	PortalItem,
+	MapImageLayer,
+	CSVLayer,
+	Layer
 ) {
-    esriConfig.apiKey = "AAPK5067984744a84d2384da027ddfa80ce8RZonR4G8lDlC88I5gs7vJBrdh-u6flR0MqOQHsgL3rzjjr7dtVU4638ZtVDz9DA1";
-    const map = new Map({
-        basemap: "osm-standard"
-    })
-    const view = new MapView({
-        map: map,
-        center: [110, 34.207],
-        zoom: 3,
-        container: "viewDiv"
-    });
-    const map2 = new Map({
-        basemap: "arcgis-imagery"
-    })
-    const view2 = new MapView({
-        map: map2,
-        center: [110, 34.207],
-        zoom: 3,
-        container: "viewDiv2"
-    });
-    view.on(["pointer-down", "pointer-move", "mouse-wheel"], function (evt) {
+	esriConfig.apiKey = "AAPK5067984744a84d2384da027ddfa80ce8RZonR4G8lDlC88I5gs7vJBrdh-u6flR0MqOQHsgL3rzjjr7dtVU4638ZtVDz9DA1";
+	const map = new Map({
+		basemap: "osm-standard"
+	})
+	const view = new MapView({
+		map: map,
+		center: [110, 34.207],
+		zoom: 3,
+		container: "viewDiv"
+	});
+	const map2 = new Map({
+		basemap: "arcgis-imagery"
+	})
+	const view2 = new MapView({
+		map: map2,
+		center: [110, 34.207],
+		zoom: 3,
+		container: "viewDiv2"
+	});
+	view.on(["pointer-down", "pointer-move", "mouse-wheel"], function (evt) {
 		view2.center = view.center;
 		view2.scale = view.scale
 	});
@@ -35,7 +52,27 @@ require([
 		view.center = view2.center;
 		view.scale = view2.scale;
 	});
-    window.onload = function () {
+
+	let layer = new FeatureLayer
+	({
+		portalItem: {  // autocasts as esri/portal/PortalItem
+			id: "ce7b243749604c7798da6a3ac9e75ee1"
+		}
+	});
+	map.add(layer);
+
+	// Layer.fromPortalItem({
+	// 	portalItem: {
+	// 		id: "25fc53ec333f43cfaab773ba0338dbf5",
+	
+	// 	}
+	// }).then(function (layer) {
+	// 	map.add(layer);
+	// });
+
+
+
+	window.onload = function () {
 		var disX = disY = 0;                         // 鼠标距离div的左距离和上距离
 		var div1 = document.getElementById("div1");  // 得到div1对象
 
@@ -72,13 +109,13 @@ require([
 		};
 	};
 })
-function Swipe()
-{
-    var divone = document.getElementById("div1");//移动框
+function Swipe() {
+	var divone = document.getElementById("div1");//移动框
 	var left = divone.offsetLeft;
-    var width1 = divone.offsetWidth;
-    // var right = left + width1;
-    var right = event.clientX;
-    document.getElementById("viewDiv2").style.clip="rect(0px," + right + "px,768px,0px)";
+	var width1 = divone.offsetWidth;
 
+	var middle = left + width1;
+	// var middle = event.clientX;
+	document.getElementById("viewDiv2").style.clip = "rect(0px," + middle + "px,768px,0px)";
+	document.getElementById("viewDiv").style.clip = "rect(0px, 1555px,768px," + middle + "px)";
 }

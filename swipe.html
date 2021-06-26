@@ -3,10 +3,11 @@
 
 <head>
     <link rel="stylesheet" href="css/swipe.css" />
+    <link rel="stylesheet" href="css/Bar.css" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
-    <title>swipe</title>
+    <title>左右卷帘</title>
     <link rel="stylesheet" href="https://js.arcgis.com/4.19/esri/themes/light/main.css">
     <script src="https://js.arcgis.com/4.19/"></script>
     <script src="js/swipe.js"></script>
@@ -14,16 +15,15 @@
 
 <body>
     <ul>
-
-        <a href="swipe.html"><button class="swipe">swipe</button></a>
-        <a href="map.html"><button class="main">main</button></a>
-
+        <a href="swipe.html"><button class="swipe">左右卷帘</button></a>
+        <a href="map.html"><button class="main">透视窗口</button></a>
+        <a href="employ-pop.html"><button class="employ-pop">就业状况</button></a>
     </ul>
-    <div id="viewDiv"></div>
-    <div id="viewDiv2" ></div>
+    <div id="viewDiv" onmousemove = "Swipe()"></div>
+    <div id="viewDiv2"  onmousemove = "Swipe()"></div>
     <div id="JWD"></div>
     <div id="scale"></div>
-    <div id="div1" onmousemove="Swipe()"></div>
+    <div id="div1" onmousemove = "Swipe()"></div>
 </body>
 
 </html>
