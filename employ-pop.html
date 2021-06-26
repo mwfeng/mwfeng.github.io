@@ -14,22 +14,29 @@
 </head>
 
 <body>
-    <ul>
-        <a href="swipe.html"><button class="swipe">左右卷帘</button></a>
-        <a href="map.html"><button class="main">透视窗口</button></a>
-        <a href="employ-pop.html"><button class="employ-pop">就业状况</button></a>
-    </ul>
-    <div id="viewDiv"></div>
-    <div id="Basemap_">
-        <div id="bmap1" class="basemap"><img src="img/street_night.png" /></div>
-        <div id="bmap2" class="basemap"><img src="img/streets.png" /></div>
-        <div id="bmap3" class="basemap"><img src="img/osm_standard.png" /></div>
-        <div id="bmap4" class="basemap"><img src="img/arcgis-nova.png"></div>
+
+    <div>
+        <ul>
+            <li><a href="employ-pop.html">就业状况</a></li>
+            <li><a href="map.html">透视窗口</a></li>
+            <li><a href="swipe.html">卷帘</a></li>
+
+
+        </ul>
     </div>
+    <div id="viewDiv">
+        <div id="Basemap_">
+            <div id="bmap1" class="basemap"><img src="img/street_night.png" /></div>
+            <div id="bmap2" class="basemap"><img src="img/streets.png" /></div>
+            <div id="bmap3" class="basemap"><img src="img/osm_standard.png" /></div>
+            <div id="bmap4" class="basemap"><img src="img/arcgis-nova.png"></div>
+        </div>
+    </div>
+    
     <div id="feature">
         <button id="button1">delete</button>
         <input type="checkbox" id="Earthquakes"><br>
-        <div id="earthquake2"><a>Earthquakes</a></div>
+        <div id="earthquake2">Earthquakes</div>
         <button id="button2">delete</button>
         <input type="checkbox" id="city"><br>
         <div id="city2">SampleWorldCities</div>

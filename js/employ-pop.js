@@ -28,7 +28,7 @@ require([
 ) {
 	esriConfig.apiKey = "AAPK5067984744a84d2384da027ddfa80ce8RZonR4G8lDlC88I5gs7vJBrdh-u6flR0MqOQHsgL3rzjjr7dtVU4638ZtVDz9DA1";
 	const map = new Map({
-		basemap: "streets"
+		basemap: "arcgis-streets-night"
 	})
 	const view = new MapView({
 		map: map,

@@ -8,15 +8,15 @@ html,body {
     position: absolute;
     height: 600px;
     width: 800px;
-    top: 0%;
+    top: 50PX;
     left: 300px;
     padding: 0;
     margin: 0;
   }
   #Basemap_{
     position: absolute;
-    top: 10px;
-    left: 1000px;
+    top: 5px;
+    right: 5px;
     width: 70px;
     height: 294px;
     padding: 5px;
