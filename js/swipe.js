@@ -53,13 +53,6 @@ require([
 		view.scale = view2.scale;
 	});
 
-	let layer = new FeatureLayer
-	({
-		portalItem: {  // autocasts as esri/portal/PortalItem
-			id: "ce7b243749604c7798da6a3ac9e75ee1"
-		}
-	});
-	map.add(layer);
 
 	// Layer.fromPortalItem({
 	// 	portalItem: {
@@ -114,8 +107,8 @@ function Swipe() {
 	var left = divone.offsetLeft;
 	var width1 = divone.offsetWidth;
 
-	var middle = left + width1;
+	var middle = left + width1 - 4;
 	// var middle = event.clientX;
 	document.getElementById("viewDiv2").style.clip = "rect(0px," + middle + "px,768px,0px)";
-	document.getElementById("viewDiv").style.clip = "rect(0px, 1555px,768px," + middle + "px)";
+	// document.getElementById("viewDiv").style.clip = "rect(0px, 1555px,768px," + middle + "px)";
 }

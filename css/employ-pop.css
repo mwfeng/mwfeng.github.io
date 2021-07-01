@@ -1,124 +1,73 @@
-html,body {
-    padding: 0;
-    margin: 0;
-    height: 100%;
-    width: 100%;
-  }
   #viewDiv {
     position: absolute;
-    height: 600px;
-    width: 800px;
-    top: 50PX;
-    left: 300px;
-    padding: 0;
-    margin: 0;
+    height: 470px;
+    width: 700px;
+    top: 560PX;
+    left:0;
+    bottom: 0;
+    right: 0;
+    margin:0 auto ;
+    z-index: 5;
   }
+  
   #Basemap_{
     position: absolute;
-    top: 5px;
+    bottom: 14px;
     right: 5px;
     width: 70px;
-    height: 294px;
+    height: 145px;
     padding: 5px;
     background-size: 100%;
-    background-color: #ffffff;
+    background-color: #242327;
     opacity: 0.7;
     z-index: 9;
     border: 3px dotted #000000;
     border-radius:5px ;
   }
-  .basemap{
-    margin: 0px;
-    z-index: 20;
-  }
+
   
   #feature{
     position: absolute;
-    bottom: 50px;
-    right: 10px;
-    width: 300px;
-    height: 100px;
+    bottom: 40px;
+    left: 5px;
+    width: 220px;
+    height: 60px;
     padding: 5px;
     background-size: 100%;
-    background-color: #ffffff;
+    background-color: #726868;
     opacity: 0.7;
-    z-index: 9;
     border: 3px dotted #000000;
     border-radius:5px ;
   }
-  #earthquake2{
-  top: 5px;
-  left: 30px;
-	float: left;
-	position:absolute;
-	background-color: white;
-	opacity: 0.8;
-  }
-  #button1{
-    top: 1px;
-    float:right;
-    background-color: rgb(252, 250, 247);
-    border: 1px solid rgb(156, 149, 165);
-    color: rgb(15, 15, 15);
-    height: 20px;
-    width: 60px;
-    z-index: 10;
-  }
+
+
   #city2{
-  top: 25px;
+  top: 5px;
   left: 30px;
 	float: top;
 	position:absolute;
-	background-color: white;
 	opacity: 0.8;
   }
-  #button2{
-    top: 1px;
-    float:right;
-    background-color: rgb(252, 250, 247);
-    border: 1px solid rgb(156, 149, 165);
-    color: rgb(15, 15, 15);
-    height: 20px;
-    width: 60px;
-    z-index: 10;
-  }
+
 
   #imagery2{
+    top: 25px;
+    left: 30px;
+    float: left;
+    position:absolute;
+
+    opacity: 0.8;
+  }
+
+  #china_B2{
     top: 45px;
     left: 30px;
     float: left;
     position:absolute;
-    background-color: white;
+
     opacity: 0.8;
   }
-  #button3{
-    top: 1px;
-    float:right;
-    background-color: rgb(252, 250, 247);
-    border: 1px solid rgb(156, 149, 165);
-    color: rgb(15, 15, 15);
-    height: 20px;
-    width: 60px;
-    z-index: 10;
-  }
-  #china_B2{
-    top: 65px;
-    left: 30px;
-    float: left;
-    position:absolute;
-    background-color: white;
-    opacity: 0.8;
-  }
-  #button4{
-    top: 1px;
-    float:right;
-    background-color: rgb(252, 250, 247);
-    border: 1px solid rgb(156, 149, 165);
-    color: rgb(15, 15, 15);
-    height: 20px;
-    width: 60px;
-    z-index: 10;
-  }
+ 
   #JWD{
     position: absolute;
     bottom: 10px;
@@ -130,6 +79,7 @@ html,body {
     opacity: 0.7;
     z-index: 9;
     border-radius:5px;
+    color: aliceblue;
   }
   #scale{
     position: absolute;
@@ -142,5 +92,73 @@ html,body {
     opacity: 0.7;
     z-index: 9;
     border-radius:5px;
+    color: aliceblue;
   }
+  #hh1{
+    position: absolute;
+    top: 50px;
+    left:0;
+    bottom: 0;
+    right: 0;
+    margin:0 auto ;
+    z-index: 9;
+    height: 60px;
+  }
+  #hh2{
+    position: absolute;
+    width: 800px;
+    top: 140px;
+    left:0;
+    bottom: 0;
+    right: 0;
+    margin:0 auto ;
+    z-index: 9;
+    height: 60px;
+}
+  #hh3{
+    position: absolute;
+    width: 800px;
+    top: 142%;
+    left:0;
+    bottom: 0;
+    right: 0;
+    margin:0 auto ;
+    z-index: 9;
+    height: 60px;
+  }
+  #hh4{
+    position: absolute;
+    width: 800px;
+    top: 295%;
+    left:0;
+    bottom: 0;
+    right: 0;
+    margin:0 auto ;
+    z-index: 9;
+    height: 60px;
+  }
+  #hh5{
+    position: absolute;
+    width: 800px;
+    top: 380%;
+    left:0;
+    bottom: 0;
+    right: 0;
+    margin:0 auto ;
+    z-index: 9;
+    height: 60px;
+  }
+  #hh6{
+    position: absolute;
+    width: 800px;
+    top: 485%;
+    left:0;
+    bottom: 0;
+    right: 0;
+    margin:0 auto ;
+    z-index: 9;
+    height: 60px;
+  }
+
+
 

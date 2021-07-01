@@ -10,20 +10,28 @@
     <title>透视窗口</title>
     <link rel="stylesheet" href="https://js.arcgis.com/4.19/esri/themes/light/main.css">
     <script src="https://js.arcgis.com/4.19/"></script>
-    <script src="js/map1.js"></script>
+    <script src="js/map.js"></script>
+    
 </head>
 
 <body>
     <div >
         <ul>
-            <li><a href="employ-pop.html">就业状况</a></li>
-            <li><a href="map.html">透视窗口</a></li>
-            <li><a href="swipe.html">卷帘</a></li>
+            <li><a href="employ-pop.html">主页</a></li>
+            <li>
+                <div class="dropdown">
+                    <span><a >其它功能</a></span>
+                    <div class="dropdown-content">
+                        <p><a href="swipe.html">左右卷帘</a></p>
+                        <p><a href="map.html">透视窗口</a></p>
+                    </div>
+                </div>
+            </li>
         </ul>
     </div>
     <div id="viewDiv"></div>
     <div id="viewDiv3"></div>
-    <div id="viewDiv4"></div>
+    <div id="viewDiv4"  onmousemove="window2()"></div>
     <div id="Basemap_">
         <div id="bmap1" class="basemap"><img src="img/street_night.png" /></div>
         <div id="bmap2" class="basemap"><img src="img/streets.png" /></div>

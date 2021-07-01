@@ -14,19 +14,26 @@
 </head>
 
 <body>
-    <div >
+    <div>
         <ul>
-            <li><a href="employ-pop.html">就业状况</a></li>
-            <li><a href="map.html">透视窗口</a></li>
-            <li><a href="swipe.html">卷帘</a></li>
+            <li><a href="employ-pop.html">主页</a></li>
+            <li>
+                <div class="dropdown">
+                    <span><a >其它功能</a></span>
+                    <div class="dropdown-content">
+                        <p><a href="swipe.html">左右卷帘</a></p>
+                        <p><a href="map.html">透视窗口</a></p>
+                    </div>
+                </div>
+            </li>
 
         </ul>
     </div>
-    <div id="viewDiv" onmousemove = "Swipe()"></div>
-    <div id="viewDiv2"  onmousemove = "Swipe()"></div>
+    <div id="viewDiv" onmousemove="Swipe()"></div>
+    <div id="viewDiv2" onmousemove="Swipe()"></div>
     <div id="JWD"></div>
     <div id="scale"></div>
-    <div id="div1" onmousemove = "Swipe()"></div>
+    <div id="div1" onmousemove="Swipe()"></div>
 </body>
 
 </html>

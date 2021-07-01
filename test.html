@@ -1,107 +1,102 @@
-<!-- <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>侧边导航实列</title>
-		<style>
-			.wp{
-				width: 120px;
-				margin: 0 left;
-				background-color: white;
-			}		
-			.snv a{
-				display: block;/*块状化*/
-				text-align: center;/*文字居中*/
-				font-size:16px;/*文字大小*/
-				height: 40px;/*高度*/
-				color: fuchsia;/*文字颜色*/
-				line-height: 40px;/*块状高度*/
-				-webkit-border-radius:5px;/*圆角*/
-				-moz-border-radius: 5px;/*圆角*/
-				border-radius: 5px;/*圆角*/
-			}
-			ul{
-				list-style-type: none;/*ul里面的点去掉*/
-			}
-			a{
-				text-decoration:none;/*没有文本装饰(比如文字/连接没有下划线)*/
-			}
-			.snv .on a {
-				background-color: red;/*背景颜色*/
-				color: white;/*文字颜色*/
-			}
-			.snv li:hover a{
-				background-color: fuchsia;/*背景颜色*/
-				color: white;/*文字颜色*/
-				
-			}
-		</style>
-	</head>
-	<body>
-		<div class="wp">
-		<div class="snv">
-			<ul>
-				<li class="on"><a id="apple" href="">水果</a></li>
-				<li><a id="apple" href="">苹果</a></li>
-				<li><a id="apple" href="">李子</a></li>
-				<li><a id="apple" href="">西瓜</a></li>
-				<li><a id="apple" href="">香蕉</a></li>
-				
-			</ul>
-		</div>
-		</div>
-	</body>
-</html> -->
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title></title>
-	
-	<style type="text/css">
-			 ul{/*设置导航栏的框框*/
-			 	margin: 30px auto;
-				 width: 600px;
-				 height: 350px;
-				padding: 0px;
-				
-			}
-			li{
-				list-style-type: none;
-				float: left;
-			}
-			a{
-				display: block;
-				width: 100px;
-				height: 50px;
-				font-family: Microsoft Yahei;
-				line-height: 50px;
-				background-color: rgb(0, 0, 0);
-				margin: 0px 0px;
-				color: #fff;
-				text-align: center;
-				text-decoration: none;
-				font-size: 15px;
-			}
-			a:hover{
-				background-color: #918ffa;
-			}
-		</style>
-	
-	
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        .div{width: 500px; min-height: 300px; border: 1px solid red; margin: auto; margin-top: 200px;}
+        .div .lyb{width: 90%; margin: auto; display: block; border-bottom: 1px solid red; padding: 5px 0px;}
+        .div .div1{width: 90%; border: 1px solid red; margin: 5px auto;}
+        .div .div1 p{width: 100%; padding: 5px 0px; height: 30px; line-height: 30px; }
+        .div .div1 ul{width: 100%;}
+        .div .div1 ul li{width: 100%; height: 30px; padding: 5px 0px; line-height: 30px; list-style: none;margin-bottom: 10px; background: blanchedalmond;}
+        #wbk{resize: none; width: 90%;margin: auto; height: 100px; display: block;}
+        #btn{width: 90%; height: 100px; margin: auto; display: block; margin-top: 5px;}
+        a{float: right}
+        span{float: right;}
+    </style>
 </head>
 <body>
-	<div >
-			<ul class=daohanglan>
-				<li><a href="employ-pop.html"></a></li>
-				<li><a href="">图书</a></li>
-				<li><a href="">家电</a></li>
-				<li><a href="">数码</a></li>
-				<li><a href="">服装</a></li>
-				<li><a href="">家居</a></li>
-			</ul>
-		</div>
+    <div class="div">
+        <p class="lyb">留言板</p>
+        <div class="div1">
+            <p class="p">请输入内容</p>
+            <ul>
+                
+            </ul>
+        </div>
+        <textarea id="wbk"></textarea>
+        <input id="btn" type="button" value="发布留言"  />
+    </div>
+    <script>
+        var p = document.getElementsByClassName("p")[0];
+        var ul = document.getElementsByTagName("ul")[0];
+        var wbk = document.getElementById("wbk");
+        var btn = document.getElementById("btn");
+        var num = 0;
+        btn.onclick = function(){
+            if(wbk.value.length != 0){
+                p.style.display = "none";
+                var li = document.createElement("li");
+                var em = document.createElement('em');
+                var a = document.createElement("a");
+                var span = document.createElement("span");
+                
+                li.innerHTML = wbk.value;
+                li.insertBefore(em,li.firstChild);
+                
+                
+                a.innerHTML = "点击删除";
+                a.setAttribute("href","javascript:void(0)");
+                li.appendChild(a);
+                
+                span.innerHTML = "第" + num + "个";
+                li.appendChild(span);
+                
+                
+                wbk.value = "";
+                ul.appendChild(li);
+                
+                fn1();
+                fn2();
+            }else{
+                alert("请输入内容")
+            }
+        }
+        
+        function fn1(){
+            var ali = document.getElementsByTagName('li');
+            var ee = document.getElementsByTagName('em');
+            for(var i=0;i<ali.length;i++){
+                ee[i].innerHTML = i + 1 + ".";
+            }
+            
+            var ss = document.getElementsByTagName('span');
+            for(var i=0;i<ali.length;i++){
+                ss[i].innerHTML = "第" + (i + 1) + "个";
+            }
+            if(ali.length == 0){
+                p.style.display = "block";
+            }
+            
+        }
+        function fn2(){
+            var aa = document.getElementsByTagName("a");
+            for(var i=0;i<aa.length;i++){
+                aa[i].onclick = function(){
+                    this.parentNode.parentNode.removeChild(this.parentNode);
+                    fn1();
+                }
+                
+            }
+        }
+        
+        
+        
+        
+    </script>
 </body>
 </html>

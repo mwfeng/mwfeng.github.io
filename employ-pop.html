@@ -2,54 +2,206 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="css/employ-pop.css" />
-    <link rel="stylesheet" href="css/Bar.css" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
-    <title>就业状况</title>
-    <link rel="stylesheet" href="https://js.arcgis.com/4.19/esri/themes/light/main.css">
-    <script src="https://js.arcgis.com/4.19/"></script>
-    <script src="js/employ-pop.js"></script>
+	<script src="js/echarts.min.js"></script>
+
+	<script src="js/custom.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<title>全国就业情况</title>
+	<link rel="stylesheet" href="https://js.arcgis.com/4.19/esri/themes/light/main.css">
+	<link rel="stylesheet" href="css/employ-pop.css" />
+	<link rel="stylesheet" href="css/Bar.css" />
+	<link rel="stylesheet" href="css/graph.css" />
+	<script src="https://js.arcgis.com/4.19/"></script>
+	<script src="js/employ-pop.js"></script>
+	
 </head>
 
 <body>
+	<div>
+		<ul>
+			<li><a href="employ-pop.html">主页</a></li>
+			<li>
+				<div class="dropdown">
+					<span><a>其它功能</a></span>
+					<div class="dropdown-content">
+						<p><a href="swipe.html">左右卷帘</a></p>
+						<p><a href="map.html">透视窗口</a></p>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div id="hh1">
+		<h1 style="top: 10%; text-align: center;">
+			<font color="#FFFFFF">近年全国就业及其分布状况</font>
+		</h1>
+	</div>
+	<div id="hh2">
+		<h2 style="top: 10%; text-align: center;">
+			<font color="#FFFFFF">全国人口及就业人口分布</font>
+		</h2>
+		<p style="top: 10%;text-align:justify; text-justify:inter-ideograph;">
+			<font color="#FFFFFF">
+				&emsp;&emsp;人社部4日发布《2019年度人力资源和社会保障事业发展统计公报》，截至2019年年末，全国就业人员7.7亿人，其中城镇就业人员4.4亿人。全国就业人员中，第一产业就业人员占25.1%，第二产业就业人员占27.5%，第三产业就业人员占47.4%。第三产业就业人员占比连续5年上升，比2015年提高5个百分点。
+			</font>
+		</p>
+		<p style="top: 10%;text-align:justify; text-justify:inter-ideograph;">
+			<font color="#FFFFFF">&emsp;&emsp;
+				农民工方面，2019年全国农民工总量2.9亿人，其中本地农民工近1.2亿人，比上年增加82万人，增长0.7%；外出农民工1.7亿人，比上年增加159万人，增长0.9%。
+			</font>
+		</p>
+		<p style="top: 10%;text-align:justify; text-justify:inter-ideograph;">
+			<font color="#FFFFFF">&emsp;&emsp;
+				2019年全年，基本养老保险、失业保险、工伤保险三项社会保险基金收入合计5.9万亿元，比上年增加2040亿元，增长3.6%；基金支出合计5.4万亿元，比上年增加5285亿元，增长10.7%。
+			</font>
+		</p>
+		<p style="top: 10%;text-align:justify; text-justify:inter-ideograph;">
+			<font color="#FFFFFF">&emsp;&emsp;
+				其中，2019年全年基本养老保险基金总收入5.7万亿元，基金总支出5.2万亿元，年末累计结存约6.3万亿元；2019年全年失业保险基金收入1284亿元，基金支出1333亿元，年末失业保险基金累计结存4625亿元。
+			</font>
+		</p>
+		<p style="top: 10%;text-align:justify; text-justify:inter-ideograph;">
+			<font color="#FFFFFF">&emsp;&emsp;
+				企业年金方面，2019年年末，全国有9.6万户企业建立了企业年金，参加职工2548万人。2019年年末企业年金基金累计结存近1.8万亿元。</font>
+		</p>
+	</div>
+	<div id="viewDiv">
+		<div id="Basemap_">
+			<div id="bmap1" class="basemap"><img src="img/street_night.png" /></div>
+			<div id="bmap4" class="basemap"><img src="img/arcgis-nova.png"></div>
+		</div>
+		<div id="JWD"></div>
+		<div id="scale"></div>
+		<div id="feature">
+			<input type="checkbox" id="city"><br>
+			<div id="city2">2019年各省会城市人口分布</div>
+			<input type="checkbox" id="imagery"><br>
+			<div id="imagery2">2019年各地区就业人口分布</div>
+			<input type="checkbox" id="china_B"><br><br /><br />
+			<div id="china_B2">各省市分年龄人口分布状况</div>
+			<div id="num"></div>
+		</div>
+	</div>
+	<div id="hh3">
+		<h2 style="top: 10%; text-align: center;">
+			<font color="#FFFFFF">各个行业就业情况</font>
+		</h2>
+		<p style="top: 10%;text-align:justify; text-justify:inter-ideograph;">
+			<font color="#FFFFFF">
+				&emsp;&emsp;北京、上海、广东、江苏、浙江、福建等东部经济水平较高的省份，城镇化水平较高，城镇就业人口全国占比高于人口占比，制造业、建筑业、基础服务业、金融业、房地产业、信息服务业就业人口全国占比高于城镇人口和就业全国占比。广东制造业单位就业人口全国占比接近20%，江苏、浙江建筑业城镇就业人口全国占比较高。北京作为首都，金融业和信息服务业城镇单位就业人口规模最大。
+				四川、辽宁、湖南、云南等省城镇就业人口波动较大，就业环境变化较为剧烈。
+			</font>
+		</p>
+		<p style="top: 10%;text-align:justify; text-justify:inter-ideograph;">
+			<font color="#FFFFFF">&emsp;&emsp;
+				全国城镇单位就业人口主要分布在制造业、建筑业、基础服务业、社会服务业、金融业、房地产业、信息服务业等领域。基础服务业主要包括批发零售业、交通运输业、住宿餐饮业、居民服务业、租赁和商业服务业等行业。社会服务业主要包括科研与科技服务、教育、卫生、公共管理与社会组织等行业领域。
+			</font>
+		</p>
+		<p style="top: 10%;text-align:justify; text-justify:inter-ideograph;">
+			<font color="#FFFFFF">&emsp;&emsp;
+				广东、江苏、山东、河南、浙江、湖北、福建、上海、天津等省份制造业就业人口占比相对较高。江苏、浙江、福建、重庆等省份建筑业就业人口占比相对较高。北京、上海、天津、海南等省份基础服务业就业人口占比相对较高。四川、河北、湖南、安徽、陕西、江西、山西、黑龙江、云南、广西、吉林、新疆、贵州、内蒙古、甘肃、海南、宁夏、青海、西藏等省份社会服务业就业人口占比相对较高。北京、上海金融业、房地产业、信息服务业就业人口占比相对较高。
+			</font>
+		</p>
+		<p style="top: 10%;text-align:justify; text-justify:inter-ideograph;">
+			<font color="#FFFFFF">&emsp;&emsp;
+				全国城镇私营个体就业人口主要集中基础服务业、制造业、建筑业等领域。江苏、浙江、天津等省份制造业私营个体就业人口占比相对较高。减速、海南、西藏等省份建筑业私营个体就业人口占比相对较高。北京的城镇私营个体就业的主要行业占私营个体就业的比例较低，与北京城镇私营个体就业人口基数较高有关，同时也说明北京城镇私营个体就业的人口流动性较大，统计数据准确度相对较低。
+			</font>
+		</p>
+		<p style="top: 10%;text-align:justify; text-justify:inter-ideograph;">
+			<font color="#FFFFFF">&emsp;&emsp;
+				广东、江苏、浙江是制造业城镇就业人口规模最大的三个省份。城镇单位是制造业就业的主要形式，江苏、浙江、安徽、新疆、西藏等省份私营个体制造业就业人口比例高于全国平均水平。总体来看，城镇单位制造业就业人口已经出现了负增长，制造业私营个体就业人口增长速度相对较快。从2013年到2017年，四川、河北、湖南、北京、云南、黑龙江、内蒙古、西藏等地制造业私营个体就业人口增长速度波动较大，说明上述地区制造业就业环境变动较大。
+			</font>
+		</p>
+	</div>
+	<div id="hh4">
+		<h2 style="top: 10%; text-align: center;">
+			<font color="#FFFFFF">各地区其它就业相关状况</font>
+		</h2>
+	</div>
+	<div id="hh5">
+		<h3 style="top: 5%; text-align: center;">
+			<font color="#FFFFFF">平均每周工作时间及就业相关法规</font>
+		</h3>
+		<p style="top: 10%;text-align:justify; text-justify:inter-ideograph;">
+			<font color="#FFFFFF">
+				&emsp;&emsp;从图表来看各个行业每周的工作时间相差无几，只有农林牧渔业每周工作的时间在40个小时以下，其它类型的工作均在40-50个小时之间，2019年平均每周工作时间最长的工作类型为生产运输设备操作人员，工作时长达49.8小时。
+			</font>
+		</p>
+		<p style="top: 10%;text-align:justify; text-justify:inter-ideograph;">
+			<font color="#FFFFFF">&emsp;&emsp;
+				《劳动法》1995年1月1日起生效 的相关规定工作时间和休息休假
 
-    <div>
-        <ul>
-            <li><a href="employ-pop.html">就业状况</a></li>
-            <li><a href="map.html">透视窗口</a></li>
-            <li><a href="swipe.html">卷帘</a></li>
+				第三十六条　国家实行劳动者每日工作时间不超过八小时、平均每周工作时间不超过四十小时的工时制度。
+
+				第三十七条　对实行计件工作的劳动者，用人单位应当根据本法第三十六条规定的工时制度合理确定其劳动定额和计件报酬标准。
+
+				第三十八条　用人单位应当保证劳动者每周至少休息一日。
+
+				第三十九条　企业因生产特点不能实行本法第三十六条、第三十八条规定的，经劳动行政部门批准，可以实行其他工作和休息办法。
+
+				第四十条　用人单位在下列节日期间应当依法安排劳动者休假： （一）元旦；（二）春节； （三）国际劳动节； （四）国庆节； （五）法律、法规规定的其他休假节日。
+
+				第四十一条　用人单位由于生产经营需要，经与工会和劳动者协商后可以延长工作时间，一般每日不得超过一小时；因特殊原因需要延长工作时间的，在保障劳动者身体健康的条件下延长工作时间每日不得超过三小时，但是每月不得超过三十六小时。
+			</font>
+	</div>
+	<div id="hh6">
+		<h3 style="top: 5%; text-align: center;">
+			<font color="#FFFFFF">就业人口受教育程度</font>
+		</h3>
+		<p style="top: 10%;text-align:justify; text-justify:inter-ideograph;">
+			<font color="#FFFFFF">
+				&emsp;&emsp;2020年全国就业人员文盲率为2.2%，近60%为初高中的文化水平，高中以上教育水平的达22.8%。
+			</font>
+		</p>
+	</div>
+	<div id="Graduation"></div>
+	<div id="worktime"></div>
+	<div id="employpop"></div>
+	<script src="js/graph.js"></script>
+
+	<style>
+		.embed-container {
+			position: relative;
+			height: 500px;
+			width: 700px;
+			top: 307%;
+			bottom: 0;
+			right: 0;
+			left: 0;
+			margin: 0 auto;
+
+		}
+
+		.embed-container iframe,
+		.embed-container object,
+		.embed-container iframe {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		}
+
+		small {
+			position: absolute;
+			z-index: 40;
+			bottom: 0;
+			margin-bottom: -15px;
+		}
+	</style>
+	<div class="embed-container">
+		<small><a
+				href="http://makvsunwat8xjy0o.maps.arcgis.com/apps/Embed/index.html?webmap=104c320d7d4e46d89350a672da89b657&extent=54.0728,7.4358,157.608,52.0979&home=true&zoom=true&scale=true&search=true&searchextent=true&details=true&legendlayers=true&active_panel=details&basemap_gallery=true&disable_scroll=true&theme=light"
+				style="color:#d9d9f3;text-align:left" target="_blank">View larger map</a>
+		</small><br>
+		<iframe width="500" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+			title="各地区2019年年末总人口"
+			src="http://makvsunwat8xjy0o.maps.arcgis.com/apps/Embed/index.html?webmap=104c320d7d4e46d89350a672da89b657&extent=54.0728,7.4358,157.608,52.0979&home=true&zoom=true&previewImage=true&scale=true&search=true&searchextent=true&details=true&legendlayers=true&active_panel=details&basemap_gallery=true&disable_scroll=true&theme=light"></iframe>
+	</div>
 
 
-        </ul>
-    </div>
-    <div id="viewDiv">
-        <div id="Basemap_">
-            <div id="bmap1" class="basemap"><img src="img/street_night.png" /></div>
-            <div id="bmap2" class="basemap"><img src="img/streets.png" /></div>
-            <div id="bmap3" class="basemap"><img src="img/osm_standard.png" /></div>
-            <div id="bmap4" class="basemap"><img src="img/arcgis-nova.png"></div>
-        </div>
-    </div>
-    
-    <div id="feature">
-        <button id="button1">delete</button>
-        <input type="checkbox" id="Earthquakes"><br>
-        <div id="earthquake2">Earthquakes</div>
-        <button id="button2">delete</button>
-        <input type="checkbox" id="city"><br>
-        <div id="city2">SampleWorldCities</div>
-        <button id="button3">delete</button>
-        <input type="checkbox" id="imagery"><br>
-        <div id="imagery2">Imagery</div>
-        <button id="button4">delete</button>
-        <input type="checkbox" id="china_B"><br>
-        <div id="china_B2">pop2010</div>
-        <div id="num"></div>
-    </div>
-    <div id="JWD"></div>
-    <div id="scale"></div>
 </body>
 
 </html>

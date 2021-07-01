@@ -1,0 +1,35 @@
+#Graduation{
+    position:absolute;
+	width: 1000px;
+	height: 500px;
+	left:0;
+    bottom: 0;
+    right: 0;
+	margin:0 auto ;
+	top: 505%;
+	background-color:  rgba(136, 117, 117, 0.3);
+}
+#employpop{
+    position:absolute;
+	width: 1000px;
+	height: 500px;
+	left:0;
+    bottom: 0;
+    right: 0;
+	margin:0 auto ;
+	top: 227%;
+	border-width: 5px;
+	background-color:  rgba(136, 117, 117, 0.3);
+}
+#worktime{
+    position:absolute;
+	width: 900px;
+	height: 400px;
+	left:0;
+    bottom: 0;
+    right: 0;
+	margin:0 auto ;
+	top: 430%;
+	border-width: 5px;
+	background-color:  rgba(136, 117, 117, 0.3);
+}
