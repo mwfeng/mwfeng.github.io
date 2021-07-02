@@ -9,7 +9,17 @@
     margin:0 auto ;
     z-index: 5;
   }
-  
+  #viewDiv2 {
+    position: absolute;
+    height: 470px;
+    width: 700px;
+    top: 307%;
+    left:0;
+    bottom: 0;
+    right: 0;
+    margin:0 auto ;
+    z-index: 5;
+  }
   #Basemap_{
     position: absolute;
     bottom: 14px;
