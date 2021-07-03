@@ -211,7 +211,7 @@ require([
 				exactMatch: false,
 				outFields: ["NAME_1"],
 				name: "教育程度",
-				placeholder: "受教育程度，例如: 北京"
+				placeholder: "受教育程度，例如: 湖北"
 			},
 
 
@@ -234,7 +234,7 @@ require([
 				exactMatch: false,
 				outFields: ["employ_NAME"],
 				name: "就业人口分布",
-				placeholder: "例如: 北京"
+				placeholder: "例如: 湖北"
 			},
 
 		]
