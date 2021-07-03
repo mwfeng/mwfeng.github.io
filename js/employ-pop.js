@@ -6,11 +6,8 @@ require([
 	"esri/widgets/Track",
 	"esri/Graphic",
 	"esri/layers/FeatureLayer",
-	"esri/layers/TileLayer",
 	"esri/widgets/Search",
-	"esri/tasks/Locator",
-	"esri/widgets/LayerList",
-	"esri/WebMap"
+
 ], function (
 	esriConfig,
 	Map,
@@ -19,11 +16,8 @@ require([
 	Track,
 	Graphic,
 	FeatureLayer,
-	TileLayer,
 	Search,
-	Locator,
-	LayerList,
-	WebMap
+
 ) {
 	esriConfig.apiKey = "AAPK5067984744a84d2384da027ddfa80ce8RZonR4G8lDlC88I5gs7vJBrdh-u6flR0MqOQHsgL3rzjjr7dtVU4638ZtVDz9DA1";
 	const map = new Map({
@@ -87,7 +81,7 @@ require([
 	var search = new Search({
 		view: view
 	});
-
+	view.ui.add(search, "top-right");
 	//专题图显示、隐藏与删除-------------------------------------------------------------------------------------------------
 
 
