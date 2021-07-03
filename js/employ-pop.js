@@ -29,19 +29,22 @@ require([
 	const map = new Map({
 		basemap: "dark-gray-vector"
 	})
+	const map2 = new Map({
+		basemap: "dark-gray-vector"
+	})
 	const view = new MapView({
 		map: map,
 		center: [110, 34.207],
 		zoom: 3,
 		container: "viewDiv"
 	});
-	const Webmap = new WebMap({
-		portalItem: {  
-			id: "104c320d7d4e46d89350a672da89b657"
-		}
-	});
+	// const Webmap = new WebMap({
+	// 	portalItem: {  
+	// 		id: "104c320d7d4e46d89350a672da89b657"
+	// 	}
+	// });
 	const view2 = new MapView({
-		map: Webmap,
+		map: map2,
 		center: [110, 34.207],
 		zoom: 3,
 		container: "viewDiv2"
@@ -49,9 +52,11 @@ require([
 	//底图切换--------------------------------------------------------------------------------
 	document.getElementById("bmap1").addEventListener("click", function () {
 		map.basemap = "arcgis-streets-night";
+		map2.basemap = "arcgis-streets-night";
 	});
 	document.getElementById("bmap4").addEventListener("click", function () {
 		map.basemap = "arcgis-nova";
+		map2.basemap = "arcgis-nova";
 	});
 	const locate = new Locate({
 		view: view,
@@ -104,10 +109,53 @@ require([
 		}
 	});
 
+	const Layer6 = new FeatureLayer({
+		portalItem: {  // autocasts as esri/portal/PortalItem
+			id: "13ed893ae1b540138986c74c7b82f5c3"
+		}
+	});
 
+	const Layer7 = new FeatureLayer({
+		portalItem: {  
+			id: "d35bd486e57c4f189f2840dddcb8ab80"
+		}
+	});
+	const Layer8 = new FeatureLayer({
+		portalItem: {  
+			id: "194936c7046944bf9c8af5c04a5c797c"
+		}
+	});
 
 	//图层显示、隐藏与删除———————————————————————————————————————————————————————————————————————————————————————
+	var checkbox6 = this.document.getElementById('m6');
+	checkbox6.onclick = (function () {
+		if (checkbox6.checked) {
+			map2.add(Layer6);
+		}
+		else {
+			view2.map.remove(Layer6);
+		}
+	});
+	
+	var checkbox7 = this.document.getElementById('m7');
+	checkbox7.onclick = (function () {
+		if (checkbox7.checked) {
+			map2.add(Layer7);
+		}
+		else {
+			view2.map.remove(Layer7);
+		}
+	});
 
+	var checkbox8 = this.document.getElementById('m8');
+	checkbox8.onclick = (function () {
+		if (checkbox8.checked) {
+			map2.add(Layer8);
+		}
+		else {
+			view2.map.remove(Layer8);
+		}
+	});
 
 	var checkbox3 = this.document.getElementById('imagery');
 	checkbox3.onclick = (function () {
@@ -141,8 +189,6 @@ require([
 	
 	//经纬度值
 	var farther = document.getElementById("JWD");
-	// var coord = document.createElement("div");
-	// farther.appendChild(coord);
 	function JWD(pt) {
 		var coords = "经纬度：" + pt.longitude.toFixed(2) + "," + pt.latitude.toFixed(2);
 		farther.innerHTML = coords;
@@ -158,4 +204,6 @@ require([
 		var scale = view.scale.toFixed(0);
 		scalee.innerHTML = "比例尺：" + "1:" + scale;
 	});
+	
+	
 })
