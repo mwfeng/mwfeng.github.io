@@ -78,10 +78,10 @@ require([
 		useHeadingEnabled: false
 	});
 	view.ui.add(track, "top-left");
-	var search = new Search({
-		view: view
-	});
-	view.ui.add(search, "top-right");
+	// var search = new Search({
+	// 	view: view
+	// });
+	// view.ui.add(search, "top-right");
 	//专题图显示、隐藏与删除-------------------------------------------------------------------------------------------------
 
 
@@ -198,6 +198,51 @@ require([
 		var scale = view.scale.toFixed(0);
 		scalee.innerHTML = "比例尺：" + "1:" + scale;
 	});
-	
+	const searchWidget2 = new Search({
+		view: view2,
+		allPlaceholder: "District or Senator",
+		includeDefaultSources: false,
+		sources: [
+
+			{
+				layer: Layer7,
+				searchFields: ["NAME_1"],
+				displayField: "NAME_1",
+				exactMatch: false,
+				outFields: ["NAME_1"],
+				name: "教育程度",
+				placeholder: "受教育程度，例如: 北京"
+			},
+
+
+		]
+	});
+
+	// Add the search widget to the top left corner of the view
+	view2.ui.add(searchWidget2, {
+		position: "top-right"
+	});
+	const searchWidget = new Search({
+		view: view,
+		allPlaceholder: "District or Senator",
+		includeDefaultSources: false,
+		sources: [
+			{
+				layer: Layer2,
+				searchFields: ["employ_NAME"],
+				displayField: "employ_NAME",
+				exactMatch: false,
+				outFields: ["employ_NAME"],
+				name: "就业人口分布",
+				placeholder: "例如: 北京"
+			},
+
+		]
+	});
+
+	// Add the search widget to the top left corner of the view
+	view.ui.add(searchWidget, {
+		position: "top-right"
+	});
 	
 })
